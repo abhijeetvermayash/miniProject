@@ -1,34 +1,30 @@
-// const bcrypt = require("bcrypt");
-// const saltRounds = 10;
 const jwt = require("jsonwebtoken");
-var stream = require("stream");
-const s3 = require("../config/s3.config.js");
+const helper = require("../config/helper_upload");
 const con = require("../db");
 var md5 = require("md5");
 
 exports.signup = async (req, response) => {
-  const s3Client = s3.s3Client;
-  const params = s3.uploadParams;
-
   var imageurl;
+  if (!req.file) {
+    response.status(400).json({ error: "No file given" });
+    return;
+  }
 
-  console.log(req.body.heloo);
-
-  var pics = req.file.originalname.split(".");
-  params.Key = pics[0] + Date.now().toString() + "." + pics[1];
-  params.Body = req.file.buffer;
-
-  let { Location } = await s3Client.upload(params).promise();
+  imageurl = await helper.uploadImage(req.file);
 
   let name = req.body.name;
   let email = req.body.email;
   let password = req.body.password;
+  let addr = req.body.addr;
+  let pincode = req.body.pincode;
+  let state = req.body.state;
+  let city = req.body.city;
 
   var sample = md5(name + email);
 
   let user_id = sample;
   let role = "user";
-  let dp = Location;
+  let dp = imageurl;
   let contact_no = req.body.contact_no;
 
   var sql = `select* from users where user_id = '${user_id}'`;
@@ -41,14 +37,17 @@ exports.signup = async (req, response) => {
     }
 
     sql = `insert into users values ("${user_id}", "${name}", "${email}","${password}","${role}","${dp}","${contact_no}") `;
+    sql1 = `insert into area values ("${addr}", "${pincode}", "${state}","${city}","${user_id}") `;
 
     await con.query(sql);
-    var useris = {
+    var user = {
       user_id: user_id,
     };
+    await con.query(sql1);
+
     jwt.sign(
       {
-        useris,
+        user,
       },
       "secretkey",
       (err, token) => {

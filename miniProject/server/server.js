@@ -4,9 +4,9 @@ const Product = require("./controller/Product");
 let upload = require("./config/multer.config.js");
 const db = require("./db");
 const express = require("express");
-
-// const tokenVerif = require("./controller/tokenVerification");
-
+const admin = require("./controller/admin");
+const tokenVerif = require("./controller/tokenVerification");
+const userc = require("./controller/user");
 const app = express();
 
 app.use(
@@ -21,11 +21,27 @@ app.use(
 
 // app.get("/getUser", tokenVerif.verifyToken, tokenVerif.loadUser);
 app.post("/getLogin", signIn.signin);
-app.post("/addprod", upload.single("image"), Product.AddProduct);
+app.post(
+  "/addprod",
+  tokenVerif.verifyToken,
+  upload.single("image"),
+  Product.AddProduct
+);
 
 app.get("/getproducts", Product.showAllProd);
 app.post("/getSignup", upload.single("file"), signUp.signup);
-app.put("/updateprod", upload.single("image"), Product.UpdateProduct);
+app.get("/getStatus", admin.getStatus);
+app.post("/setStatus", admin.setStatus);
+app.post("/usr/makeDeal", tokenVerif.verifyToken, userc.makeDeal);
+app.put(
+  "/updateprod",
+  tokenVerif.verifyToken,
+  upload.single("image"),
+  Product.UpdateProduct
+);
+app.get("/getDeal", tokenVerif.verifyToken, userc.getDeal);
+app.post("/approveDeal", tokenVerif.verifyToken, userc.approveDeal);
+
 app.delete("/deleteprod/:prod_id", Product.DelProd);
 
 app.listen(4000, () => {
