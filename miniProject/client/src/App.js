@@ -8,6 +8,7 @@ import LoginForm from "./ResLog/LoginForm";
 import SignUpForm from "./ResLog/SignUpForm";
 import { useContext, useEffect } from "react";
 import { AuthContext } from "./context/auth";
+import AddProduct from "./AddProduct/addProduct";
 
 function App() {
   const { state, loadUser } = useContext(AuthContext);
@@ -23,6 +24,7 @@ function App() {
           <Route path="/login" component={LoginForm} />
           <Route path="/signup" component={SignUpForm} />
           <Route path="/collection" component={ProdGrid} />
+          <Route path="/addproducts" component={AddProduct} />
         </Switch>
       </BrowserRouter>
     </div>

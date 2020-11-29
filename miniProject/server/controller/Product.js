@@ -70,3 +70,13 @@ exports.DelProd = async (req, res) => {
     return res.status(500).json({ errors: [{ message: Err }] });
   }
 };
+
+exports.getSubcat = async (req, res) => {
+  try {
+    sql = `select * from sub_category`;
+    var [result] = await con.query(sql);
+    return res.status(200).json({ result });
+  } catch (Err) {
+    return res.status(500).json({ errors: [{ message: Err }] });
+  }
+};

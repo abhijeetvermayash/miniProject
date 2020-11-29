@@ -43,6 +43,7 @@ app.post("/getSignup", upload.single("file"), signUp.signup);
 app.get("/getStatus", admin.getStatus);
 app.post("/setStatus", admin.setStatus);
 app.post("/usr/makeDeal", tokenVerif.verifyToken, userc.makeDeal);
+app.get("/getsubcat", Product.getSubcat);
 app.put(
   "/updateprod",
   tokenVerif.verifyToken,
