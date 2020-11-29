@@ -1,5 +1,3 @@
-
-
 const jwt = require("jsonwebtoken");
 
 const con = require("../db");
@@ -8,27 +6,21 @@ exports.signin = async (req, res) => {
   let email = req.body.email;
   let password = req.body.password;
 
-  
-
   try {
     var sql = `select * from users where email="${email}"`;
     const [rows] = await con.query(sql);
-    
-    
 
     if (rows.length == 0) {
       return res.status(500).json({ errors: [{ message: "Wrong email" }] });
     }
 
-  
-    var sqlquery=`select  getPassbyEmail('${email}') as pass`;
-    const [[result]]=await con.query(sqlquery); 
-  
+    var sqlquery = `select  getPassbyEmail('${email}') as pass`;
+
+    const [[result]] = await con.query(sqlquery);
+
     console.log(result.pass);
 
-    
-
-    if (result.pass!=password) {
+    if (result.pass != password) {
       return res.status(500).json({ errors: [{ message: "Wrong Password" }] });
     }
 
@@ -55,7 +47,7 @@ exports.signin = async (req, res) => {
 
     // return res.json({user:usn});
   } catch (err) {
-    return res.status(500).json({ errors: [{ message: err }] });
+    return res.status(500).json({ errors: [{ message: "Server Error" }] });
   }
 };
 

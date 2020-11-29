@@ -18,7 +18,7 @@ export default function singleprod(props) {
 
             <div class="product_price">
               <div class="grid-price">
-                <span class="money">{props.price}</span>
+                <span class="money">₹{props.price}</span>
               </div>
             </div>
           </div>

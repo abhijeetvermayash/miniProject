@@ -8,8 +8,6 @@ export default function home() {
   return (
     <div>
       <div class="main-sec">
-        {header()}
-
         <div class="banner-wthree-info container">
           <div class="row">
             <div class="col-lg-5 banner-left-info">

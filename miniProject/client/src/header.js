@@ -1,9 +1,11 @@
-import React from "react";
+import React, { useContext } from "react";
 import "./assets/css/bootstrap.css";
 import "./assets/css/font-awesome.css";
 import "./assets/css/style.css";
-
-export default function header() {
+import { NavLink, Link } from "react-router-dom";
+import { AuthContext } from "./context/auth";
+export default function Header() {
+  const { state, LogOut } = useContext(AuthContext);
   return (
     <div style={{ backgroundColor: "#74d2e7" }}>
       <header class="py-sm-3 pt-3 pb-2" id="home">
@@ -18,15 +20,22 @@ export default function header() {
                 <label class="sub-des">Online Store</label>
               </h1>
             </div>
-
-            <div class="forms ml-auto">
-              <a href="login.html" class="btn">
-                <span class="fa fa-user-circle-o"></span> Sign In
-              </a>
-              <a href="register.html" class="btn">
-                <span class="fa fa-pencil-square-o"></span> Sign Up
-              </a>
-            </div>
+            {!state.isLoggedIn ? (
+              <div class="forms ml-auto">
+                <Link to="/login" class="btn">
+                  <span class="fa fa-user-circle-o"></span> Sign In
+                </Link>
+                <Link to="/signup" class="btn">
+                  <span class="fa fa-pencil-square-o"></span> Sign Up
+                </Link>
+              </div>
+            ) : (
+              <div class="forms ml-auto">
+                <Link class="btn" onClick={LogOut}>
+                  <span class="fa fa-user-circle-o"></span> Log Out
+                </Link>
+              </div>
+            )}
           </div>
           <div class="nav-top-wthree">
             <nav>
@@ -35,9 +44,10 @@ export default function header() {
               </label>
               <input type="checkbox" id="drop" />
               <ul class="menu">
-                <li class="active">
-                  <a href="index.html">Home</a>
-                </li>
+                <NavLink to="/" exact activeClassName="active">
+                  Home
+                </NavLink>
+
                 <li>
                   <a href="about.html">About Us</a>
                 </li>
@@ -71,7 +81,9 @@ export default function header() {
                 </li>
 
                 <li>
-                  <a href="shop.html">Collections</a>
+                  <NavLink to="/collection" activeClassName="active">
+                    Collections
+                  </NavLink>
                 </li>
                 <li>
                   <a href="contact.html">Contact</a>

@@ -8,12 +8,21 @@ const admin = require("./controller/admin");
 const tokenVerif = require("./controller/tokenVerification");
 const userc = require("./controller/user");
 const app = express();
+const cors = require("cors");
+app.use(require("cors")());
 
+app.use(
+  cors({
+    origin: ["http://localhost:3000", "http://localhost:4000/"],
+    credentials: true,
+  })
+);
 app.use(
   express.json({
     extended: false,
   })
 );
+
 (async () => {
   await db.query("select * from users");
   console.log("db connected");
@@ -27,6 +36,7 @@ app.post(
   upload.single("image"),
   Product.AddProduct
 );
+app.get("/getUser", tokenVerif.verifyToken, tokenVerif.loadUser);
 
 app.get("/getproducts", Product.showAllProd);
 app.post("/getSignup", upload.single("file"), signUp.signup);
