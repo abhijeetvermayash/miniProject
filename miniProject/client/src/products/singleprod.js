@@ -1,6 +1,7 @@
 import Axios from "axios";
 import React, { useState } from "react";
 import { SpinnerCircular } from "spinners-react";
+import { Link } from "react-router-dom";
 import "../assets/css/bootstrap.css";
 import "../assets/css/font-awesome.css";
 import "../assets/css/style.css";
@@ -25,14 +26,17 @@ export default function SingleProd(props) {
   };
   return (
     <>
-      <div class="col-lg-3 shop-info-grid text-center mt-4">
+      <div
+        class="col-lg-3 shop-info-grid text-center mt-4"
+        style={{ float: "left" }}
+      >
         <div class="product-shoe-info shoe">
           <div class="men-thumb-item">
             <img src={props.prod_img} class="img-fluid" alt="" />
           </div>
           <div class="item-info-product">
             <h4>
-              <a href="single.html">{props.prod_title} </a>
+              <Link to={`/products/${props.prod_id}`}>{props.prod_title} </Link>
             </h4>
 
             <div class="product_price">

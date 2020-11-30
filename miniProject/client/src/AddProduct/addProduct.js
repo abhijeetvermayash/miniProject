@@ -206,7 +206,7 @@ export default function AddProduct() {
 function getsubcat(category, allsubcat, handleChange, values) {
   if (allsubcat) {
     // console.log(allsubcat);
-    if (category === "Cloths") {
+    if (category === "2") {
       var a = allsubcat.filter((sc) => sc.category_id === "2");
       return (
         <>
@@ -226,7 +226,7 @@ function getsubcat(category, allsubcat, handleChange, values) {
         </>
       );
     }
-    if (category === "Electronics") {
+    if (category === "3") {
       var a = allsubcat.filter((sc) => sc.category_id === "3");
       return (
         <div class="field-group">
@@ -244,7 +244,7 @@ function getsubcat(category, allsubcat, handleChange, values) {
         </div>
       );
     }
-    if (category === "Musical Instruments") {
+    if (category === "4") {
       var a = allsubcat.filter((sc) => sc.category_id === "4");
       return (
         <div class="field-group">
