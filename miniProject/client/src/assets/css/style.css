@@ -1036,12 +1036,26 @@ input:checked + .slider:before {
   text-transform: uppercase;
   font-weight: 700;
 }
-
+div.pendings {
+  margin-top: 15px;
+}
 span.money {
   font-size: 1em;
   font-weight: 800;
   color: #ff4c4c;
   letter-spacing: 2px;
+}
+span.status {
+  color: black;
+}
+div.approved {
+  background-color: green;
+}
+div.pending {
+  background-color: orange;
+}
+div.declined {
+  background-color: red;
 }
 
 ul.stars li {

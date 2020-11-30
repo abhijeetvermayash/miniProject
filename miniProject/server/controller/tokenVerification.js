@@ -19,7 +19,7 @@ exports.verifyToken = async (req, res, next) => {
 exports.loadUser = async (req, res) => {
   try {
     const [user] = await db.query(
-      `select name,email,user_id,contact_no from users where user_id=\"${req.user.user_id}\"`
+      `select name,email,user_id,contact_no,role from users where user_id=\"${req.user.user_id}\"`
     );
     res.json(user);
   } catch (err) {

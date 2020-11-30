@@ -146,6 +146,7 @@ const Auth = (props) => {
         error: [],
       },
     });
+    window.location.replace("/");
   };
 
   return (

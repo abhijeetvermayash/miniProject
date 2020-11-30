@@ -51,7 +51,7 @@ export default function Header() {
                 <li>
                   <a href="about.html">About Us</a>
                 </li>
-                <li>
+                {/* <li>
                   <label for="drop-2" class="toggle">
                     Dropdown{" "}
                     <span class="fa fa-angle-down" aria-hidden="true"></span>
@@ -78,13 +78,34 @@ export default function Header() {
                       </a>
                     </li>
                   </ul>
-                </li>
+                </li> */}
 
                 <li>
                   <NavLink to="/collection" activeClassName="active">
                     Collections
                   </NavLink>
                 </li>
+                {state.isLoggedIn ? (
+                  <li>
+                    <NavLink to="/addproducts" activeClassName="active">
+                      Add Products
+                    </NavLink>
+                  </li>
+                ) : null}
+                {state.isLoggedIn ? (
+                  <li>
+                    <NavLink to="/myproducts" activeClassName="active">
+                      My Products
+                    </NavLink>
+                  </li>
+                ) : null}
+                {state.user !== null && state.user.role === "admin" ? (
+                  <li>
+                    <NavLink to="/pending" activeClassName="active">
+                      Pending Products
+                    </NavLink>
+                  </li>
+                ) : null}
                 <li>
                   <a href="contact.html">Contact</a>
                 </li>
