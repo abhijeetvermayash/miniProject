@@ -51,6 +51,7 @@ app.put(
   Product.UpdateProduct
 );
 app.get("/getDeal", tokenVerif.verifyToken, userc.getDeal);
+app.post("/getalreadydeal", tokenVerif.verifyToken, userc.getalreadydeal);
 app.post("/approveDeal", tokenVerif.verifyToken, userc.approveDeal);
 
 app.delete("/deleteprod/:prod_id", Product.DelProd);

@@ -8,6 +8,7 @@ import "../assets/css/style.css";
 
 export default function SingleProd(props) {
   const [loading, setloading] = useState(false);
+
   const onClk = async (approved) => {
     let data = JSON.stringify({ approved, prod_id: props.prod_id });
     try {
