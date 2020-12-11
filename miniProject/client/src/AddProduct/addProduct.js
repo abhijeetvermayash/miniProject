@@ -5,12 +5,22 @@ import axios from "axios";
 import "../assets/css/bootstrap.css";
 import "../assets/css/font-awesome.css";
 import "../assets/css/style.css";
-import { AuthContext } from "../context/auth";
 
-export default function AddProduct() {
+export default function AddProduct(props) {
   const [allsubcat, setallsubcat] = useState();
   const [image, setimage] = useState();
+  const [data, setdata] = useState({});
+
   useEffect(() => {
+    console.log(props);
+    if (
+      props != null &&
+      props.location != null &&
+      props.location.data != null &&
+      props.location.data.edit
+    ) {
+      setdata(props.location.data);
+    }
     const res = async () => {
       const response = await axios.get("/getsubcat");
 
@@ -20,33 +30,51 @@ export default function AddProduct() {
     };
     res();
   }, []);
-  console.log(allsubcat);
 
   const onsubmit = async (values, { setSubmitting }) => {
     try {
       console.log(image);
-      var data = new FormData();
-      data.append("image", image);
+      var fdata = new FormData();
+      fdata.append("image", image);
       for (let [key, value] of Object.entries(values)) {
-        data.append(key, value);
+        fdata.append(key, value);
       }
 
       // alert(JSON.stringify(values, null, 2));
-
-      await axios.post("/addprod", data, {
-        headers: {
-          "Content-Type": "multipart/form-data",
-        },
-      });
+      if (!data.edit) {
+        await axios.post("/addprod", fdata, {
+          headers: {
+            "Content-Type": "multipart/form-data",
+          },
+        });
+      } else {
+        fdata.append("prod_id", data.prod_id);
+        console.log(fdata);
+        await axios.put("/updateprod", fdata, {
+          headers: {
+            "Content-Type": "multipart/form-data",
+          },
+        });
+      }
 
       setSubmitting(false);
+      if (!data.edit) {
+        alert("Your Product has been added");
+      } else {
+        alert("Your Product has been updated");
+      }
 
-      alert("Your Product has been added");
       window.location.replace("/");
     } catch (err) {
       console.log(err);
       alert(err);
     }
+  };
+  let cat = {
+    1: "Books",
+    2: "Cloths",
+    3: "Electronics",
+    4: "Musical Instruments",
   };
 
   return (
@@ -54,15 +82,24 @@ export default function AddProduct() {
       <br />
       <br />
       <h3 class="title-wthree mb-lg-5 mb-4 text-center">
-        Add Products here...{" "}
+        {!data.edit ? "Add Products here..." : "Edit Products here..."}
       </h3>
+      {data.reason != null && data.reason.length > 0 ? (
+        <h4>
+          Reason For Decline :-{"           "}
+          <span style={{ color: "red", fontSize: "2.5rem" }}>
+            {data.reason}
+          </span>
+        </h4>
+      ) : null}
       <Formik
+        enableReinitialize
         initialValues={{
-          prod_title: "",
-          prod_price: "",
-          prod_disc: "",
-          category: "1",
-          subcat: "sem1",
+          prod_title: data.prod_title != null ? data.prod_title : "",
+          prod_price: data.prod_price != null ? data.prod_price : "",
+          prod_disc: data.prod_desc != null ? data.prod_desc : "",
+          category: data.category != null ? cat[data.category] : "",
+          subcat: data.subcat != null ? data.subcat : "",
         }}
         validate={(values) => {
           const errors = {};
@@ -189,7 +226,7 @@ export default function AddProduct() {
                     )}
                     <div class="content-input-field">
                       <button type="submit" class="btn" disabled={isSubmitting}>
-                        Add product
+                        {!data.edit ? "Add product" : "Update product"}
                       </button>
                     </div>
                   </Form>

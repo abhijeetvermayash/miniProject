@@ -2,28 +2,26 @@ import Axios from "axios";
 import React, { useState, useContext } from "react";
 import { AuthContext } from "../context/auth";
 import { SpinnerCircular } from "spinners-react";
-import { Link } from "react-router-dom";
+import { Link, useHistory } from "react-router-dom";
 import "../assets/css/bootstrap.css";
 import "../assets/css/font-awesome.css";
 import "../assets/css/style.css";
 
 export default function SingleProd(props) {
   const [loading, setloading] = useState(false);
-  const { state, LogOut } = useContext(AuthContext);
-  console.log("from singleprod", props);
+  const { state } = useContext(AuthContext);
+  const history = useHistory();
 
-  const onClk = async (approved) => {
-    let data = JSON.stringify({ approved, prod_id: props.prod_id });
+  const onClk = () => {
+    history.push({ pathname: "/addproducts", data: { ...props, edit: true } });
+  };
+
+  const onDelete = async () => {
     try {
       setloading(true);
-
-      await Axios.post("/setStatus", data, {
-        headers: {
-          "Content-Type": "application/json",
-        },
-      });
+      await Axios.delete(`/deleteprod/${props.prod_id}`);
+      await props.fun();
       setloading(false);
-      props.call();
     } catch (err) {
       console.log(err);
     }
@@ -39,10 +37,18 @@ export default function SingleProd(props) {
       >
         <div class="product-shoe-info shoe" style={{}}>
           <div class="men-thumb-item">
-            <img src={props.prod_img} class="img-fluid" alt="" />
+            <img
+              src={props.prod_img}
+              class="img-fluid imgx"
+              alt=""
+              height="128"
+              width="128"
+            />
           </div>
           <div class="item-info-product">
-            {state.user.role === "admin" && props.status === "pending" ? (
+            {state.user != null &&
+            state.user.role === "admin" &&
+            props.status === "pending" ? (
               <h4>
                 <Link to={`admin/products/${props.prod_id}`}>
                   {props.prod_title}{" "}
@@ -63,10 +69,31 @@ export default function SingleProd(props) {
               <div class="grid-price">
                 <span class="money">₹{props.prod_price}</span>
               </div>
-              {props.statusShow ? (
-                <div class={props.status}>
-                  <span class="status">{props.status}</span>
-                </div>
+              {props.statusShow && !props.pendingShow ? (
+                <>
+                  <div class={props.status}>
+                    <span class="status">{props.status}</span>
+                  </div>
+
+                  <div style={{ marginTop: "10px" }}>
+                    {!loading ? (
+                      <a class="btn btn-danger" onClick={onDelete}>
+                        <i class="icon-trash icon-large"></i> Delete
+                      </a>
+                    ) : (
+                      <SpinnerCircular />
+                    )}
+                    {props.status === "declined" ? (
+                      <button
+                        class="btn btn-small btn-info"
+                        style={{ marginLeft: "5px" }}
+                        onClick={onClk}
+                      >
+                        Edit <i class="fa fa-edit"></i>
+                      </button>
+                    ) : null}
+                  </div>
+                </>
               ) : null}
             </div>
             {/* {props.pendingShow ? (

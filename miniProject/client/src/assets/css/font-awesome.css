@@ -17,6 +17,12 @@
   font-weight: normal;
   font-style: normal;
 }
+.imgx {
+  width: 128px;
+  height: 128px;
+  object-fit: cover;
+}
+
 .fa {
   display: inline-block;
   font: normal normal normal 14px/1 FontAwesome;

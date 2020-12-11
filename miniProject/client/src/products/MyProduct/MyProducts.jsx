@@ -7,19 +7,22 @@ import SingleProd from "../singleprod";
 export default function MyProducts() {
   const { products, setproducts } = useContext(ProdCtx);
   const { state } = useContext(AuthContext);
+  const fun = async () => {
+    let response = await Axios.get("/getproducts");
+
+    setproducts(response.data.result);
+  };
 
   useEffect(() => {
     (async () => {
       if (products.length === 0) {
-        let response = await Axios.get("/getproducts");
-
-        setproducts(response.data.result);
+        fun();
       }
     })();
   }, []);
   let jsx = products.map((prod) => {
     if (prod.seller_id === state.user.user_id)
-      return <SingleProd {...prod} statusShow />;
+      return <SingleProd {...prod} statusShow fun={fun} />;
   });
   return (
     <>

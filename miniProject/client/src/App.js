@@ -29,7 +29,10 @@ function App() {
             <Route path="/login" component={LoginForm} />
             <Route path="/signup" component={SignUpForm} />
             <Route path="/collection" component={ProdGrid} />
-            <Route path="/addproducts" component={AddProduct} />
+            <Route
+              path="/addproducts"
+              render={(props) => <AddProduct {...props} />}
+            />
             <Route path="/myproducts" component={MyProducts} />
             <Route path="/pending" component={PendingProducts} />
             <Route path="/products/:id" component={ProdDiscription} />

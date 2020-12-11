@@ -49,7 +49,8 @@ exports.UpdateProduct = async (req, res) => {
 
     var prod_img = Location;
 
-    sql = `update  products set prod_title='${prod_title}', prod_desc='${prod_disc}',prod_img='${prod_img}',seller_id='${seller_id}',category='${category}',prod_price=${prod_price},subcat='${subcat}' where prod_id='${prod_id}'`;
+    sql = `update  products set prod_title='${prod_title}', prod_desc='${prod_disc}',prod_img='${prod_img}',seller_id='${seller_id}',category='${category}',prod_price=${prod_price},subcat='${subcat}', status="pending" where prod_id='${prod_id}'`;
+    console.log(sql);
     // sql1 = `insert into approved values('${sample}')`;
 
     await con.query(sql);
@@ -57,6 +58,7 @@ exports.UpdateProduct = async (req, res) => {
 
     return res.status(200).json({ result: "success" });
   } catch (Err) {
+    console.log(Err);
     return res.status(500).json({ errors: [{ message: Err }] });
   }
 };

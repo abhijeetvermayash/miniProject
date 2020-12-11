@@ -14,7 +14,6 @@ export default function ProdDiscription(props) {
   const [contacted, setcontacted] = useState(false);
   const [deals, setdeals] = useState();
   console.log(1123232);
-  console.log(state.user.role);
 
   const { products, setproducts } = useContext(ProdCtx);
   const call = async () => {
