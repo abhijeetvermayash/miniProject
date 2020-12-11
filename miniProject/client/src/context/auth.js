@@ -128,6 +128,7 @@ const Auth = (props) => {
       });
 
       loadUser();
+      window.location.replace("/login");
     } catch (error) {
       console.log(error);
       dispatch({

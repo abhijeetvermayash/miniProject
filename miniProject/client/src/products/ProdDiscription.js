@@ -13,7 +13,6 @@ export default function ProdDiscription(props) {
   const { state, LogOut } = useContext(AuthContext);
   const [contacted, setcontacted] = useState(false);
   const [deals, setdeals] = useState();
-  console.log(state.user.user_id);
 
   const { products, setproducts } = useContext(ProdCtx);
   const call = async () => {
@@ -149,7 +148,7 @@ export default function ProdDiscription(props) {
       <h3>Rs &nbsp;{product[0].prod_price}</h3>
       <br />
 
-      {state.user.user_id === product[0].seller_id ? (
+      {state.user != null && state.user.user_id === product[0].seller_id ? (
         <div>
           <button
             type="submit"
@@ -269,7 +268,14 @@ export default function ProdDiscription(props) {
           onClick={async (e) => {
             e.preventDefault();
             setcl(true);
-            await Axios.post("/usr/makeDeal", { prod_id: product[0].prod_id });
+            if (state.user != null) {
+              await Axios.post("/usr/makeDeal", {
+                prod_id: product[0].prod_id,
+              });
+            } else {
+              alert("Login First To Contact Seller");
+              window.location.replace("/collection");
+            }
           }}
           style={{
             backgroundColor: "#f44336",

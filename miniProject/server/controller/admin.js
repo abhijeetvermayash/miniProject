@@ -18,9 +18,9 @@ exports.setStatus = async (req, res) => {
     let prod_id = req.body.prod_id;
     let query;
     if (approved) {
-      query = `update products set status = 'approved' where prod_id='${prod_id}'`;
+      query = `update products set status = 'approved'  where prod_id='${prod_id}'`;
     } else {
-      query = `update products set status = 'declined' where prod_id='${prod_id}'`;
+      query = `update products set status = 'declined', reason="${req.body.reason}" where prod_id='${prod_id}'`;
     }
     await con.query(query);
     console.log(query);

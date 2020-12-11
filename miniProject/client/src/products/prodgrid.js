@@ -31,7 +31,9 @@ export default function ProdGrid() {
     res();
   }, []);
   let jsx = products.map((prod) => {
-    return <SingleProd {...prod} />;
+    if (prod.status === "approved") {
+      return <SingleProd {...prod} />;
+    }
   });
 
   return (

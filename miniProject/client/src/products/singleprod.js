@@ -50,7 +50,7 @@ export default function SingleProd(props) {
                 </div>
               ) : null}
             </div>
-            {props.pendingShow ? (
+            {/* {props.pendingShow ? (
               !loading ? (
                 <div className="pendings">
                   <i
@@ -67,7 +67,7 @@ export default function SingleProd(props) {
               ) : (
                 <SpinnerCircular />
               )
-            ) : null}
+            ) : null} */}
           </div>
         </div>
       </div>
