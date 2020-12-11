@@ -13,6 +13,7 @@ import { ProductContext } from "./context/product";
 import MyProducts from "./products/MyProduct/MyProducts";
 import PendingProducts from "./products/PendingProducts/PendingProducts";
 import ProdDiscription from "./products/ProdDiscription";
+import AdminReview from "./products/AdminReview";
 function App() {
   const { state, loadUser } = useContext(AuthContext);
   useEffect(() => {
@@ -32,6 +33,7 @@ function App() {
             <Route path="/myproducts" component={MyProducts} />
             <Route path="/pending" component={PendingProducts} />
             <Route path="/products/:id" component={ProdDiscription} />
+            <Route path="/admin/products/:id" component={AdminReview} />
           </Switch>
         </ProductContext>
       </BrowserRouter>

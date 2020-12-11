@@ -1,5 +1,6 @@
 import Axios from "axios";
-import React, { useState } from "react";
+import React, { useState, useContext } from "react";
+import { AuthContext } from "../context/auth";
 import { SpinnerCircular } from "spinners-react";
 import { Link } from "react-router-dom";
 import "../assets/css/bootstrap.css";
@@ -8,6 +9,8 @@ import "../assets/css/style.css";
 
 export default function SingleProd(props) {
   const [loading, setloading] = useState(false);
+  const { state, LogOut } = useContext(AuthContext);
+  console.log("from singleprod", props);
 
   const onClk = async (approved) => {
     let data = JSON.stringify({ approved, prod_id: props.prod_id });
@@ -25,20 +28,36 @@ export default function SingleProd(props) {
       console.log(err);
     }
   };
+
   return (
     <>
       <div
         class="col-lg-3 shop-info-grid text-center mt-4"
-        style={{ float: "left" }}
+        style={{
+          float: "left",
+        }}
       >
-        <div class="product-shoe-info shoe">
+        <div class="product-shoe-info shoe" style={{}}>
           <div class="men-thumb-item">
             <img src={props.prod_img} class="img-fluid" alt="" />
           </div>
           <div class="item-info-product">
-            <h4>
+            {state.user.role === "admin" && props.status === "pending" ? (
+              <h4>
+                <Link to={`admin/products/${props.prod_id}`}>
+                  {props.prod_title}{" "}
+                </Link>
+              </h4>
+            ) : (
+              <h4>
+                <Link to={`/products/${props.prod_id}`}>
+                  {props.prod_title}{" "}
+                </Link>
+              </h4>
+            )}
+            {/* <h4>
               <Link to={`/products/${props.prod_id}`}>{props.prod_title} </Link>
-            </h4>
+            </h4> */}
 
             <div class="product_price">
               <div class="grid-price">

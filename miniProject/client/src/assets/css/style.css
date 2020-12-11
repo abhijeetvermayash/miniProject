@@ -1046,16 +1046,37 @@ span.money {
   letter-spacing: 2px;
 }
 span.status {
-  color: black;
+  color: white;
 }
 div.approved {
   background-color: green;
+  border: none;
+  color: white;
+  /* padding: 15px 32px; */
+  text-align: center;
+  text-decoration: none;
+  /* display: inline-block; */
+  font-size: 16px;
 }
 div.pending {
-  background-color: orange;
+  background-color: #ffa500;
+  border: none;
+  color: white;
+  /* padding: 15px 32px; */
+  text-align: center;
+  text-decoration: none;
+  /* display: inline-block; */
+  font-size: 16px;
 }
 div.declined {
-  background-color: red;
+  background-color: #f44336;
+  border: none;
+  color: white;
+  /* padding: 15px 32px; */
+  text-align: center;
+  text-decoration: none;
+  /* display: inline-block; */
+  font-size: 16px;
 }
 
 ul.stars li {
