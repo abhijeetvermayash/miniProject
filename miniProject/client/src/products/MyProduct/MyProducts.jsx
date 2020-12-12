@@ -21,7 +21,7 @@ export default function MyProducts() {
     })();
   }, []);
   let jsx = products.map((prod) => {
-    if (prod.seller_id === state.user.user_id)
+    if (state.user != null && prod.seller_id === state.user.user_id)
       return <SingleProd {...prod} statusShow fun={fun} />;
   });
   return (
