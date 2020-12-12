@@ -41,8 +41,8 @@ export default function SingleProd(props) {
               src={props.prod_img}
               class="img-fluid imgx"
               alt=""
-              height="128"
-              width="128"
+              height="191 px"
+              width="191 px"
             />
           </div>
           <div class="item-info-product">

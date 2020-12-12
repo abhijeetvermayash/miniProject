@@ -40,39 +40,37 @@ export default function ProdGrid() {
     <>
       <section className="banner-bottom py-5">
         <div className="container py-5">
-          <div className="row shop-wthree-info text-center">
-            {/* {jsx} */}
-            <Tabs
-              tabsProps={{
-                style: {
-                  textAlign: "left",
-                },
-              }}
-              activeTab={{
-                id: "tab0",
-              }}
-            >
-              <Tabs.Tab id="tab0" title="All">
-                {jsx}
-              </Tabs.Tab>
+          {/* {jsx} */}
+          <Tabs
+            tabsProps={{
+              style: {
+                textAlign: "left",
+              },
+            }}
+            activeTab={{
+              id: "tab0",
+            }}
+          >
+            <Tabs.Tab id="tab0" title="All">
+              <div class="row shop-wthree-info text-center">{jsx}</div>
+            </Tabs.Tab>
 
-              <Tabs.Tab id="tab1" title="Books">
-                {/* {jsx1} */}
-                <Prod id="1" />
-              </Tabs.Tab>
-              <Tabs.Tab id="tab2" title="Cloths">
-                <Prod id="2" />
-              </Tabs.Tab>
-              <Tabs.Tab id="tab3" title="Electronics">
-                <Prod id="3" />
-              </Tabs.Tab>
-              <Tabs.Tab id="tab4" title="Musical Instruments">
-                <Prod id="4" />
-              </Tabs.Tab>
-            </Tabs>
-            {/* <SingleProd {...state.props} />
+            <Tabs.Tab id="tab1" title="Books">
+              {/* {jsx1} */}
+              <Prod id="1" />
+            </Tabs.Tab>
+            <Tabs.Tab id="tab2" title="Cloths">
+              <Prod id="2" />
+            </Tabs.Tab>
+            <Tabs.Tab id="tab3" title="Electronics">
+              <Prod id="3" />
+            </Tabs.Tab>
+            <Tabs.Tab id="tab4" title="Musical Instruments">
+              <Prod id="4" />
+            </Tabs.Tab>
+          </Tabs>
+          {/* <SingleProd {...state.props} />
             <SingleProd {...state.props} /> */}
-          </div>
         </div>
       </section>
     </>

@@ -50,7 +50,9 @@ export default function Prod(props) {
               {opt(allsubcategory)}
             </select>
           </div>
-          {displayproducts(allProd, subcat)}
+          <div class="row shop-wthree-info text-center">
+            {displayproducts(allProd, subcat)}
+          </div>
         </div>
       </>
     );
