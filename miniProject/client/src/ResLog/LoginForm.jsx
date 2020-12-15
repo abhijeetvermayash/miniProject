@@ -6,7 +6,8 @@ import { useFormik } from "formik";
 import "../assets/css/bootstrap.css";
 import "../assets/css/font-awesome.css";
 import "../assets/css/style.css";
-import { Redirect } from "react-router-dom";
+import { Redirect,Link } from "react-router-dom";
+import Background from '../assets/images/bg2.png'
 
 export default function LoginForm() {
   const initialValues = {
@@ -51,7 +52,9 @@ export default function LoginForm() {
     show = <Redirect to="/" />;
   } else {
     show = (
-      <section className="banner-bottom py-5">
+      <section style={{background: `url(${Background})`, height: "100%", backgroundPosition: "center",
+      backgroundRepeat: "no-repeat",
+      backgroundSize: "cover"}} className="banner-bottom py-5">
         <div className="container">
           <div className="content-grid">
             <div class="content-bottom">
@@ -103,31 +106,32 @@ export default function LoginForm() {
                 ) : (
                   <SpinnerCircular color="grey" secondaryColor="red" />
                 )}
-                <ul class="list-login">
-                  <li class="switch-slide">
+                {/* <ul class="list-login"> */}
+                  {/* <li class="switch-slide">
                     <label class="switch">
                       <input type="checkbox" checked />
                       <span class="slider round"></span>
                       keep Logged in
                     </label>
-                  </li>
-                  <li>
+                  </li> */}
+                  {/* <li>
                     <a href="#" class="text-right">
                       Forgot password?
                     </a>
-                  </li>
-                  <li class="clearfix"></li>
-                </ul>
+                  </li> */}
+                  {/* <li class="clearfix"></li> */}
+                {/* </ul> */}
+                <br/>
                 <ul class="list-login-bottom">
                   <li class="">
-                    <a href="register.html" class="">
+                    <Link to="/register" class="">
                       Don't have an Account?
-                    </a>
+                    </Link>
                   </li>
                   <li class="">
-                    <a href="#" class="text-right">
+                    <Link to="/contactus" class="text-right">
                       Need Help?
-                    </a>
+                    </Link>
                   </li>
                   <li class="clearfix"></li>
                 </ul>

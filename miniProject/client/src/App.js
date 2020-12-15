@@ -14,6 +14,7 @@ import MyProducts from "./products/MyProduct/MyProducts";
 import PendingProducts from "./products/PendingProducts/PendingProducts";
 import ProdDiscription from "./products/ProdDiscription";
 import AdminReview from "./products/AdminReview";
+import About from "./contactandabout/About";
 function App() {
   const { state, loadUser } = useContext(AuthContext);
   useEffect(() => {
@@ -37,6 +38,7 @@ function App() {
             <Route path="/pending" component={PendingProducts} />
             <Route path="/products/:id" component={ProdDiscription} />
             <Route path="/admin/products/:id" component={AdminReview} />
+            <Route path="/about" component={About} />
           </Switch>
         </ProductContext>
       </BrowserRouter>

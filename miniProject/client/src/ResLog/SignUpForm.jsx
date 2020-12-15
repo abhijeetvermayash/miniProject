@@ -5,6 +5,7 @@ import "../assets/css/bootstrap.css";
 import "../assets/css/font-awesome.css";
 import "../assets/css/style.css";
 import { SpinnerCircular } from "spinners-react";
+import Background from '../assets/images/bg2.png'
 
 export default function SignUpForm() {
   const { state, SignUp } = useContext(AuthContext);
@@ -73,7 +74,9 @@ export default function SignUpForm() {
   }
   return (
     <>
-      <section className="banner-bottom py-5">
+      <section style={{background: `url(${Background})`, height: "100%", backgroundPosition: "center",
+      backgroundRepeat: "no-repeat",
+      backgroundSize: "cover"}} className="banner-bottom py-5">
         <div className="container">
           <div className="content-grid">
             <div className="content-bottom">
@@ -292,11 +295,11 @@ export default function SignUpForm() {
                 ) : (
                   <SpinnerCircular color="grey" secondaryColor="red" />
                 )}
-                <div className="list-login-bottom text-center mt-lg-5 mt-4">
+                {/* <div className="list-login-bottom text-center mt-lg-5 mt-4">
                   <a href="#" className="">
                     By clicking Signup, I agree to your terms
                   </a>
-                </div>
+                </div> */}
               </form>
             </div>
           </div>

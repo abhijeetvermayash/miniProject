@@ -14,10 +14,10 @@ export default function Header() {
             <div id="logo">
               <h1>
                 {" "}
-                <a href="index.html">
-                  <span class="log-w3pvt">B</span>aggage
-                </a>{" "}
-                <label class="sub-des">Online Store</label>
+                <Link to="/">
+                  <span class="log-w3pvt">Un</span>Trash
+                </Link>{" "}
+                <label class="sub-des">Buy sell repeat</label>
               </h1>
             </div>
             {!state.isLoggedIn ? (
@@ -48,9 +48,6 @@ export default function Header() {
                   Home
                 </NavLink>
 
-                <li>
-                  <a href="about.html">About Us</a>
-                </li>
                 {/* <li>
                   <label for="drop-2" class="toggle">
                     Dropdown{" "}
@@ -107,7 +104,10 @@ export default function Header() {
                   </li>
                 ) : null}
                 <li>
-                  <a href="contact.html">Contact</a>
+                  <Link to="/contactus">Contact</Link>
+                </li>
+                <li>
+                  <Link to="/about">About Us</Link>
                 </li>
               </ul>
             </nav>

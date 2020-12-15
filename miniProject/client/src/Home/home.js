@@ -2,6 +2,7 @@ import React from "react";
 import "../assets/css/bootstrap.css";
 import "../assets/css/font-awesome.css";
 import "../assets/css/style.css";
+import { Link } from "react-router-dom";
 import header from "../header";
 
 export default function home() {
@@ -12,15 +13,15 @@ export default function home() {
           <div class="row">
             <div class="col-lg-5 banner-left-info">
               <h3>
-                The Largest Range <span>of HandBags</span>
+                Don't Trash <span>when you can Untrash</span>
               </h3>
-              <a href="shop.html" class="btn shop">
-                Shop Now
-              </a>
+              <Link to="/collection" class="btn shop">
+                Shop now
+              </Link>
             </div>
 
             <div class="col-lg-7 banner-img">
-              <img src="images/bag.png" alt="part image" class="img-fluid" />
+              <img src="book1.png" alt="part image" class="img-fluid" />
             </div>
           </div>
         </div>
@@ -31,28 +32,28 @@ export default function home() {
           <div class="row grids-wthree-info text-center">
             <div class="col-lg-4 ab-content">
               <div class="ab-info-con">
-                <h4>Fast & Free Delivery</h4>
+                <h4>Just click & contact</h4>
                 <p>
-                  Lorem ipsum dolor sit,Nulla pellentesque dolor ipsum laoreet
-                  eleifend integer,Pellentesque maximus libero.
+                  Choose any product you need and click on contact seller,
+                  seller will handle your request.
                 </p>
               </div>
             </div>
             <div class="col-lg-4 ab-content">
               <div class="ab-info-con">
-                <h4>Safe & Secure Payments</h4>
+                <h4>Safe & Secure Deals</h4>
                 <p>
-                  Lorem ipsum dolor sit,Nulla pellentesque dolor ipsum laoreet
-                  eleifend integer,Pellentesque maximus libero.
+                  Deals and your private information are never disclosed on the
+                  site, everything is done through personal emails.
                 </p>
               </div>
             </div>
             <div class="col-lg-4 ab-content">
               <div class="ab-info-con">
-                <h4>100% Money Back Guarantee</h4>
+                <h4>Buy Sell and Repeat</h4>
                 <p>
-                  Lorem ipsum dolor sit,Nulla pellentesque dolor ipsum laoreet
-                  eleifend integer,Pellentesque maximus libero.
+                  Just buy old products from this site at cheap rate, if your
+                  use is done sell it again here.
                 </p>
               </div>
             </div>
@@ -63,22 +64,42 @@ export default function home() {
       <section class="collections">
         <div class="container-fluid">
           <div class="row">
-            <div class="col-md-8 ab-content-img"></div>
+            <div class="col-md-8 ">
+              <img
+                src="khakhi.jpg"
+                alt="part image"
+                style={{ marginTop: "25px" }}
+                class="img-fluid"
+              />
+            </div>
             <div class="col-md-4 ab-content text-center p-lg-5 p-3 my-lg-5">
-              <h4>Travel Must Haves</h4>
+              <h4>Buy Sell and Repeat</h4>
               <p>
-                Lorem ipsum dolor sit,Nulla pellentesque dolor ipsum laoreet
-                eleifend integer,Pellentesque maximus libero.
+                <b>At UnTrash</b>
+                <br />
+                <ol>
+                  <li>Fix a price and Upload any product you want to sell.</li>
+
+                  <li>Admin approval phase,admin will approve the product</li>
+
+                  <li>
+                    Select from a list of interested buyes to who all you want
+                    to share your details.
+                  </li>
+
+                  <li>Buyers will contact you and a deal is made</li>
+                </ol>
               </p>
-              <a href="shop.html" class="btn shop mt-3">
-                Shop Now
-              </a>
+              <br />
+              <Link to="/collection" class="btn shop">
+                Shop now
+              </Link>
             </div>
           </div>
         </div>
       </section>
 
-      <section class="shipping-wthree">
+      {/* <section class="shipping-wthree">
         <div class="shiopping-grids d-lg-flex">
           <div class="col-lg-4 shiopping-w3pvt-gd text-center">
             <div class="icon-gd">
@@ -109,7 +130,7 @@ export default function home() {
             </div>
           </div>
         </div>
-      </section>
+      </section> */}
 
       <div class="footer_agileinfo_topf py-5">
         <div class="container py-md-5">
@@ -117,40 +138,40 @@ export default function home() {
             <div class="col-lg-3 footer_wthree_gridf mt-lg-5">
               <h2>
                 <a href="index.html">
-                  <span>B</span>aggage
+                  <span>Un</span>Trash
                 </a>{" "}
               </h2>
-              <label class="sub-des2">Online Store</label>
+              <label class="sub-des2">Buy Sell and Repeat</label>
             </div>
             <div class="col-lg-3 footer_wthree_gridf mt-md-0 mt-4">
               <ul class="footer_wthree_gridf_list">
                 <li>
-                  <a href="index.html">
+                  <Link to="/">
                     <span class="fa fa-angle-right" aria-hidden="true"></span>{" "}
                     Home
-                  </a>
+                  </Link>
                 </li>
                 <li>
-                  <a href="about.html">
+                  <Link to="/about">
                     <span class="fa fa-angle-right" aria-hidden="true"></span>{" "}
                     About
-                  </a>
+                  </Link>
                 </li>
                 <li>
-                  <a href="shop.html">
+                  <Link to="/collection">
                     <span class="fa fa-angle-right" aria-hidden="true"></span>{" "}
                     Shop
-                  </a>
+                  </Link>
                 </li>
                 <li>
-                  <a href="shop.html">
+                  <Link to="/collection">
                     <span class="fa fa-angle-right" aria-hidden="true"></span>
                     Collections
-                  </a>
+                  </Link>
                 </li>
               </ul>
             </div>
-            <div class="col-lg-3 footer_wthree_gridf mt-md-0 mt-sm-4 mt-3">
+            {/* <div class="col-lg-3 footer_wthree_gridf mt-md-0 mt-sm-4 mt-3">
               <ul class="footer_wthree_gridf_list">
                 <li>
                   <a href="single.html">
@@ -178,34 +199,40 @@ export default function home() {
                   </a>
                 </li>
               </ul>
-            </div>
+            </div> */}
 
             <div class="col-lg-3 footer_wthree_gridf mt-md-0 mt-sm-4 mt-3">
               <ul class="footer_wthree_gridf_list">
-                <li>
-                  <a href="login.html">
+                {/* <li>
+                  <a to="/">
                     <span class="fa fa-angle-right" aria-hidden="true"></span>{" "}
                     Login{" "}
                   </a>
+                </li> */}
+                <li>
+                  <Link to="/login">
+                    <span class="fa fa-angle-right" aria-hidden="true"></span>{" "}
+                    Login{" "}
+                  </Link>
                 </li>
 
                 <li>
-                  <a href="register.html">
+                  <Link to="/signup">
                     <span class="fa fa-angle-right" aria-hidden="true"></span>
                     Register
-                  </a>
+                  </Link>
                 </li>
-                <li>
+                {/* <li>
                   <a href="#">
                     <span class="fa fa-angle-right" aria-hidden="true"></span>
                     Privacy & Policy
                   </a>
-                </li>
+                </li> */}
               </ul>
             </div>
           </div>
 
-          <div class="w3ls-fsocial-grid">
+          {/* <div class="w3ls-fsocial-grid">
             <h3 class="sub-w3ls-headf">Follow Us</h3>
             <div class="social-ficons">
               <ul>
@@ -234,12 +261,15 @@ export default function home() {
           </div>
         </div>
       </div>
+      
 
       <div class="cpy-right text-center py-3">
         <p>
           © 2019 Baggage. All rights reserved | Design by
           <a href="http://w3layouts.com"> W3layouts.</a>
         </p>
+      </div> */}
+        </div>
       </div>
     </div>
   );
