@@ -1,17 +1,46 @@
 import React from "react";
 import { Link } from "react-router-dom";
+import Background from "../assets/images/bground.png";
 
 export default function About() {
   return (
     <div>
-      <br />
-      <h2>What is UnTrash</h2>
-      <section class="collections">
+      <div class="main-sec">
+        <div class="banner-wthree-info container">
+          <div class="row">
+            <div class="col-lg-5 banner-left-info">
+              <h3>About us</h3>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      {/* <section class="collections">
         <div class="container-fluid">
           <div class="row">
-            <div class="col-md-8 ">
+            <div class="col-md-8 "> */}
+      {/* <img
+                src="abs.jpg"
+                alt="part image"
+                style={{ marginTop: "25px" }}
+                class="img-fluid"
+              />
               <img
-                src="khakhi.jpg"
+                src="abs.jpg"
+                alt="part image"
+                style={{ marginTop: "25px" }}
+                class="img-fluid"
+              />
+              <br />
+              <img
+                src="abs.jpg"
+                alt="part image"
+                style={{ marginTop: "25px" }}
+                class="img-fluid"
+              />
+              <br /> */}
+      {/* <img
+                src="bg12.jpg"
                 alt="part image"
                 style={{ marginTop: "25px" }}
                 class="img-fluid"
@@ -44,7 +73,7 @@ export default function About() {
             </div>
           </div>
         </div>
-      </section>
+      </section> */}
     </div>
   );
 }
