@@ -1,14 +1,26 @@
 const con = require("../db");
-var mailer = require("nodemailer");
-var smtpTransport = mailer.createTransport({
-  service: "Gmail",
-  auth: {
-    // user: "aashutosh.aashutoshjha.jha@gmail.com",
-    // pass: "Nodemailer@123",
-    user: "companyforyou2020@gmail.com",
-    pass: "company2020",
-  },
-});
+// var mailer = require("nodemailer");
+var nodemailer = require("nodemailer");
+var smtpTransport = require("nodemailer-smtp-transport");
+// var smtpTransport = mailer.createTransport({
+//   service: "Gmail",
+//   auth: {
+//     // user: "aashutosh.aashutoshjha.jha@gmail.com",
+//     // pass: "Nodemailer@123",
+//     user: "abhijeetvermayash@gmail.com",
+//     pass: "8579081636",
+//   },
+// });
+var transporter = nodemailer.createTransport(
+  smtpTransport({
+    service: "gmail",
+    host: "smtp.gmail.com",
+    auth: {
+      user: "abhijeetvermayash@gmail.com",
+      pass: "8579081636",
+    },
+  })
+);
 
 exports.makeDeal = async (req, res) => {
   try {
@@ -22,17 +34,32 @@ exports.makeDeal = async (req, res) => {
     query = `select email from users where user_id=(select seller_id from products where prod_id='${prod_id}')`;
     const [[result]] = await con.query(query);
     console.log(result.email);
-    var mail = {
-      from: "Monkey D Luffy <from@gmail.com>",
+    // var mail = {
+    //   from: "Monkey D Luffy <abhijeetvermayash@gmail.com>",
+    //   to: "jeetabhijeet18@gmail.com",
+    //   subject: "You have new notification ",
+    //   text: "People are interested in your products go and check",
+    //   html: "<b>People are interested in your products go and check</b>",
+    // };
+
+    // await smtpTransport.sendMail(mail);
+    var mailOptions = {
+      from: "UnTrash <abhijeetvermayash@gmail.com>",
       to: result.email,
-      subject: "You have new notification ",
-      text: "People are interested in your products go and check",
-      html: "<b>People are interested in your products go and check</b>",
+      subject: "New Notification",
+      html:
+        "<p>hello sir,</p><p>People are interested in your product go and check</p>",
     };
 
-    await smtpTransport.sendMail(mail);
-
-    smtpTransport.close();
+    console.log("dasdad");
+    transporter.sendMail(mailOptions, function (error, info) {
+      if (error) {
+        console.log(error);
+      } else {
+        console.log("Email sent: " + info.response);
+      }
+    });
+    console.log("contacted");
 
     return res.status(200).json({ result: "success" });
   } catch (e) {
@@ -60,7 +87,86 @@ exports.getalreadydeal = async (req, res) => {
     return res.status(500).json({ errors: [{ message: e }] });
   }
 };
+
+exports.newapproveDeals = async (req, res) => {
+  console.log("ysessess");
+  console.log(req.body);
+  console.log(req.user.user_id);
+  try {
+    let [[result]] = await con.query(
+      `select * from users where user_id='${req.user.user_id}'`
+    );
+    console.log(result);
+    console.log(result.email);
+    console.log("okkkkkkk");
+    console.log(req.body.approved);
+    if (req.body.approved) {
+      query = `update deal set status ='approved' where prod_id='${req.body.prod_id}' and buyer_id='${req.body.buyer_id}'`;
+      await con.query(query);
+      var mailOptions = {
+        from: `UnTrash <abhjeetvermayash@gmail.com>`,
+        to: req.body.email,
+        // to: "jeetabhijeet18@gmail.com",
+        subject: "You have new notification ",
+        text: `
+        Congratulations! It's a DEAL!!
+        Product Title:-${req.body.prod_title}
+        E-Mail:-${result.email}
+              Name:-${result.name}
+              Contact No:-${result.contact_no}
+        `,
+        html: `
+        <h1>Congratulations,It's a deal!!</h1>
+        <h3>you can contact the seller now</h3>
+        <h3>Product Title:-${req.body.prod_title}</h3><br/>
+        <b>E-Mail:-${result.email}<br/>
+        Name:-${result.name}<br/>
+        Contact No:-${result.contact_no}</b>`,
+      };
+      console.log(1);
+      transporter.sendMail(mailOptions, function (error, info) {
+        if (error) {
+          console.log(error);
+        } else {
+          console.log("Email sent: " + info.response);
+        }
+      });
+      console.log("contacted");
+      console.log(2);
+    } else {
+      query = `update deal set status ='declined' where prod_id='${req.body.prod_id}' and buyer_id='${req.body.buyer_id}'`;
+
+      console.log(query);
+      await con.query(query);
+      var mailOptions = {
+        from: `UnTrash <company@gmail.com>`,
+        to: req.body.email,
+        subject: "You have new notification ",
+        text: `
+        Product Title:-${req.body.prod_title}
+       Declined
+        `,
+        html: `<b>We are sorry your request has been declined</b>`,
+      };
+      transporter.sendMail(mailOptions, function (error, info) {
+        if (error) {
+          console.log(error);
+        } else {
+          console.log("Email sent: " + info.response);
+        }
+      });
+      console.log("contacted");
+      console.log(2);
+    }
+
+    return res.status(200).json({ result: "success" });
+  } catch {
+    return res.status(500).json({ errors: [{ message: error }] });
+  }
+};
+
 exports.approveDeal = async (req, res) => {
+  console.log("ysessess");
   try {
     let approved = req.body.approved;
     console.log(approved);
@@ -71,6 +177,7 @@ exports.approveDeal = async (req, res) => {
     );
     console.log(result);
     console.log(result.email);
+
     let query;
     if (approved) {
       var mail = {
@@ -115,11 +222,12 @@ exports.approveDeal = async (req, res) => {
 
       smtpTransport.close();
       query = `update deal set status ='declined' where prod_id='${req.body.prod_id}' and buyer_id='${req.body.buyer_id}'`;
+
+      console.log(query);
+      await con.query(query);
+      return res.status(200).json({ result: "success" });
     }
-    console.log(query);
-    await con.query(query);
-    return res.status(200).json({ result: "success" });
   } catch (error) {
-    return res.status(500).json({ errors: [{ message: error }] });
+    return res.status(900).json({ errors: [{ message: error }] });
   }
 };

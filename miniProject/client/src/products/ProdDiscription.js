@@ -69,13 +69,20 @@ export default function ProdDiscription(props) {
 
       try {
         setloading(true);
-        await Axios.post("/approveDeal", {
+        await Axios.post("/newapprovedeals", {
           approved: approved,
           email: email,
           buyer_id: id,
           prod_id: prod_id,
           prod_title: prod_title,
         });
+        // await Axios.post("/approvedeals", {
+        //   approved: approved,
+        //   email: email,
+        //   buyer_id: id,
+        //   prod_id: prod_id,
+        //   prod_title: prod_title,
+        // });
 
         callthree();
         setloading(false);

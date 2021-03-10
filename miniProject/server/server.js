@@ -52,7 +52,9 @@ app.put(
 );
 app.get("/getDeal", tokenVerif.verifyToken, userc.getDeal);
 app.post("/getalreadydeal", tokenVerif.verifyToken, userc.getalreadydeal);
-app.post("/approveDeal", tokenVerif.verifyToken, userc.approveDeal);
+app.post("/approvedeals", tokenVerif.verifyToken, userc.approveDeal);
+
+app.post("/newapprovedeals", tokenVerif.verifyToken, userc.newapproveDeals);
 
 app.delete("/deleteprod/:prod_id", Product.DelProd);
 
