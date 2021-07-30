@@ -3,6 +3,7 @@ const signUp = require("./controller/signUp");
 const Product = require("./controller/Product");
 let upload = require("./config/multer.config.js");
 const db = require("./db");
+
 const express = require("express");
 const admin = require("./controller/admin");
 const tokenVerif = require("./controller/tokenVerification");

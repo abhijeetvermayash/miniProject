@@ -107,19 +107,19 @@ export default function AddProduct(props) {
             errors.prod_title = "Required";
           }
           if (!values.prod_price) {
-            errors.prod_title = "Required";
+            errors.prod_price = "Required";
           }
           if (!values.prod_disc) {
-            errors.prod_title = "Required";
+            errors.prod_disc = "Required";
           }
-          if (!values.prod_price) {
-            errors.prod_title = "Required";
-          }
+          // if (!values.prod_price) {
+          //   errors.prod_price = "Required";
+          // }
           if (!values.category) {
-            errors.prod_title = "Required";
+            errors.category = "Required";
           }
           if (!values.subcat) {
-            errors.prod_title = "Required";
+            errors.subcat = "Required";
           }
 
           return errors;
@@ -163,10 +163,14 @@ export default function AddProduct(props) {
                         <input
                           name="prod_image"
                           type="file"
-                          onChange={(e) => setimage(e.target.files[0])}
+                          onChange={(e) => {
+                            console.log(e.target.files[0]);
+                            setimage(e.target.files[0]);
+                            console.log("noice");
+                          }}
                           onBlur={handleBlur}
                           placeholder="Product Image"
-                          required=""
+                          //required=""
                           autocomplete="off"
                         />
 

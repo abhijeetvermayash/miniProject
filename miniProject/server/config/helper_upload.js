@@ -1,10 +1,10 @@
 const { Storage } = require("@google-cloud/storage");
 const storage = new Storage({
-  projectId: "miniproject-732ae",
+  projectId: "homoeomedicare-935f2",
   keyFilename: "./firebase_credentials.json",
 });
 
-const bucket = storage.bucket("miniproject-732ae.appspot.com");
+const bucket = storage.bucket("homoeomedicare-935f2.appspot.com");
 exports.uploadImage = (file) => {
   return new Promise((resolve, reject) => {
     if (!file) {

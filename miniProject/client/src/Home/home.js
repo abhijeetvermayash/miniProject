@@ -13,7 +13,7 @@ export default function home() {
           <div class="row">
             <div class="col-lg-5 banner-left-info">
               <h3>
-                Don't Trash <span>when you can Untrash</span>
+                Why Trash <span>when you can Untrash</span>
               </h3>
               <Link to="/collection" class="btn shop">
                 Shop now
