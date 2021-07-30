@@ -58,7 +58,7 @@ const Auth = (props) => {
       setHeader(localStorage.token);
     }
     try {
-      const result = await axios.get("/getUser");
+      const result = await axios.get("https://untrsh.herokuapp.com/getUser");
       console.log(result);
       dispatch({
         type: "User_Loaded",
@@ -85,11 +85,15 @@ const Auth = (props) => {
       const body = JSON.stringify({ email, password });
       console.log(body);
 
-      const res = await axios.post("http://localhost:4000/getLogin", body, {
-        headers: {
-          "Content-Type": "application/json",
-        },
-      });
+      const res = await axios.post(
+        "https://untrsh.herokuapp.com/getLogin",
+        body,
+        {
+          headers: {
+            "Content-Type": "application/json",
+          },
+        }
+      );
 
       dispatch({
         type: "Login",
@@ -115,11 +119,15 @@ const Auth = (props) => {
       dispatch({
         type: "Login_Start",
       });
-      const res = await axios.post("http://localhost:4000/getSignup", data, {
-        headers: {
-          "Content-Type": "multipart/form-data",
-        },
-      });
+      const res = await axios.post(
+        "https://untrsh.herokuapp.com/getSignup",
+        data,
+        {
+          headers: {
+            "Content-Type": "multipart/form-data",
+          },
+        }
+      );
       dispatch({
         type: "SignUp",
         payload: {

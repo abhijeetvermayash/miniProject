@@ -47,8 +47,7 @@ exports.makeDeal = async (req, res) => {
       from: "UnTrash <abhijeetvermayash@gmail.com>",
       to: result.email,
       subject: "New Notification",
-      html:
-        "<p>hello sir,</p><p>People are interested in your product go and check</p>",
+      html: "<p>hello sir,</p><p>People are interested in your product go and check</p>",
     };
 
     console.log("dasdad");

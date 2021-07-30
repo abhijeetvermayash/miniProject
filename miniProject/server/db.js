@@ -1,13 +1,11 @@
 const mysql = require("mysql2");
 
 const con = mysql.createPool({
-  host: "localhost",
-  user: "root",
-  password: "8579081636",
+  host: "us-cdbr-east-04.cleardb.com",
+  user: "b68a82d541862c",
+  password: "11bfbd4f",
 
-  database: "project",
-  port: "3306",
-  connectTimeout: "15000",
+  database: "heroku_76a0295bdb1e3f5",
 });
 
 module.exports = con.promise();

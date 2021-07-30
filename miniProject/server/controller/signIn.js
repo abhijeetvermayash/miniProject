@@ -14,13 +14,15 @@ exports.signin = async (req, res) => {
       return res.status(500).json({ errors: [{ message: "Wrong email" }] });
     }
 
-    var sqlquery = `select  getPassbyEmail('${email}') as pass`;
+    var sqlquery = `select password from users where email='${email}' `;
+    console.log(sqlquery);
 
     const [[result]] = await con.query(sqlquery);
+    console.log(result.password);
 
-    console.log(result.pass);
+    console.log(result.password);
 
-    if (result.pass != password) {
+    if (result.password != password) {
       return res.status(500).json({ errors: [{ message: "Wrong Password" }] });
     }
 

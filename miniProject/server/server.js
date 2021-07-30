@@ -14,7 +14,10 @@ app.use(require("cors")());
 
 app.use(
   cors({
-    origin: ["http://localhost:3000", "http://localhost:4000/"],
+    origin: [
+      "https://elated-villani-d3b68d.netlify.app/",
+      "https://untrsh.herokuapp.com/",
+    ],
     credentials: true,
   })
 );
@@ -59,6 +62,6 @@ app.post("/newapprovedeals", tokenVerif.verifyToken, userc.newapproveDeals);
 
 app.delete("/deleteprod/:prod_id", Product.DelProd);
 
-app.listen(4000, () => {
-  console.log("Server running at port 4000");
+app.listen(process.env.PORT || 4000, () => {
+  console.log("Server running ");
 });
